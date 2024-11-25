@@ -21,7 +21,7 @@ function App() {
   };
 
   return (
-    <div className="h-100vh flex flex-col">
+    <div className="h-screen flex flex-col">
       <Navbar onToggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
