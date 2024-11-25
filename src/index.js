@@ -11,7 +11,7 @@ root.render(
     future={{
       v7_startTransition: true,
       v7_relativeSplatPath: true,
-    }} basename="/notes">
+    }} basename="/stickynotes">
     <NotesProvider>
       <App />
     </NotesProvider>
