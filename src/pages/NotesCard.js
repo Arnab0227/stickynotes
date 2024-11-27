@@ -16,7 +16,9 @@ const NotesCard = ({ id, title, text, pinned, archived, timestamp }) => {
   const [isDetailModalOpen, setDetailModalOpen] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedText, setEditedText] = useState(text);
-  const formattedDate = format(new Date(timestamp), "dd/MM/yyyy hh:mm a");
+  const formattedDate = timestamp
+    ? format(new Date(timestamp), "dd/MM/yyyy hh:mm a")
+    : "Invalid Date";
 
   const handlePinToggle = () => {
     notesDispatch({ type: "TOGGLE_PIN", payload: id });
