@@ -140,7 +140,14 @@ const NotesCard = ({ id, title, text, pinned, archived, timestamp }) => {
         onClose={() => setDetailModalOpen(false)}
       >
         <h2 className="text-xl font-bold mb-4">{title}</h2>
-        <p className="text-sm text-gray-700 text-wrap break-words">{text}</p>
+        <div
+          className="text-sm text-gray-700 text-wrap break-words overflow-y-auto"
+          style={{
+            maxHeight: "300px", 
+          }}
+        >
+          {text}
+        </div>
         <p className="text-xs text-gray-500 mt-4">
           Last updated: {formattedDate}
         </p>
