@@ -6,9 +6,13 @@ const NotesToolbar = () => {
     const blob = new Blob([JSON.stringify(notes)], {
       type: "application/json",
     });
+
+    const currentDate = new Date().toISOString().split("T")[0];
+    const fileName = `Exported_notes_${currentDate}.json`;
+
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "notes.json";
+    link.download = fileName;
     link.click();
   };
 

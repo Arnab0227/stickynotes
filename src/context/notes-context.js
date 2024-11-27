@@ -15,7 +15,6 @@ const NotesProvider = ({ children }) => {
     initialState
   );
 
-  // Sync state with LocalStorage whenever 'notes' changes
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);

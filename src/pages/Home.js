@@ -4,7 +4,9 @@ import { useNotes } from "../context/notes-context";
 
 const Home = () => {
   const { title, text, notes, notesDispatch } = useNotes();
-  const homeNotes = notes.filter((note) => !note.archived && !note.isInBin);
+  const homeNotes = notes
+  .filter((note) => !note.archived && !note.isInBin)
+  .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
   const handleTitleChange = (e) => {
     notesDispatch({ type: "TITLE", payload: e.target.value });
@@ -57,7 +59,7 @@ const Home = () => {
       </div>
       <div className="grid grid-cols-1 gap-4 p-4 pt-0 md:grid-cols-2 lg:grid-cols-4 overflow-y-auto ">
         {homeNotes.length > 0 &&
-          homeNotes.map(({ id, title, text, pinned }) => (
+          homeNotes.map(({ id, title, text, pinned, timestamp }) => (
             <NotesCard
               key={id}
               id={id}
@@ -65,6 +67,7 @@ const Home = () => {
               text={text}
               pinned={pinned}
               archived={false}
+              timestamp={timestamp}
               className="w-full"
             />
           ))}

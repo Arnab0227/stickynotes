@@ -22,9 +22,11 @@ export const notesReducer = (state, { type, payload }) => {
             text: state.text,
             pinned: false,
             archived: false,
+            timestamp: new Date(),
           },
         ],
       };
+
     case "CLEAR_INPUT":
       return {
         ...state,
@@ -40,6 +42,20 @@ export const notesReducer = (state, { type, payload }) => {
                 ...note,
                 pinned: !note.pinned,
                 archived: note.pinned ? note.archived : false,
+              }
+            : note
+        ),
+      };
+    case "EDIT_NOTE":
+      return {
+        ...state,
+        notes: state.notes.map((note) =>
+          note.id === payload.id
+            ? {
+                ...note,
+                title: payload.title,
+                text: payload.text,
+                timestamp: new Date(),
               }
             : note
         ),
@@ -74,7 +90,7 @@ export const notesReducer = (state, { type, payload }) => {
             : note
         ),
       };
-    
+
     case "RESTORE_NOTE":
       return {
         ...state,
